@@ -1,24 +1,26 @@
 import React from 'react';
 import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import Clock from 'react-clock';
+import Location from './Components/Location/Location';
+import Coordinates from './Components/Coordinates/Coordinates';
+import Map from './Components/Map/Map';
+
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <Location city={222} country={0.1278} ></Location >
+
+        <Map  ></Map >
+      </div>
+      <div>
+        <Coordinates latitude={51.5074} longitude={0.1278} ></Coordinates >
+      </div>
+
     </div>
   );
 }
