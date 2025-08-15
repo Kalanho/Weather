@@ -1,7 +1,17 @@
-.Location {
+.Location{
+  text-align: left;
+  padding-left: 15%; 
+}
+.Locations {
+
+
+  font-size: 3rem;
+ 
   
-    color: white;
-    size: 190px;
+}
+
+.Dateform {
   
-  }
-  
+  font-size: 1.5rem;
+ 
+}

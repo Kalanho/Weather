@@ -1,17 +1,24 @@
 import React from 'react';
 import ReactAnimatedWeather from 'react-animated-weather';
-import './WeatherInfo.css'; // Optionally, for additional styling
+import './WeatherInfo.css';
 
-function WeatherInfo({ day, temperature, weatherCondition }) {
+interface WeatherInfoProps {
+  day: number;
+  temperature: number;
+  weatherCondition: string;
+}
+const WeatherInfo: React.FC<WeatherInfoProps> = ({ temperature, weatherCondition }) => {
   const weatherIconProps = {
-    size: 48, // Adjust the size as needed
+    size: 48,
     animate: true,
-    color: 'white', // Icon color
+    color: 'white',
   };
+
+  const days: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const current = new Date();
-  let icon = 'CLEAR_DAY'; // Default icon
-  let days = ['Monday', 'Tuesday', 'Wednesdey', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
- day = current.getDay();
+  const dayIndex: number = current.getDay();
+  let icon: string;
+
   switch (weatherCondition) {
     case 'Rain':
       icon = 'RAIN';
@@ -37,16 +44,13 @@ function WeatherInfo({ day, temperature, weatherCondition }) {
 
   return (
     <div className="weather-info">
-      <div className="day">{days[day - 1]}</div>
+      <div className="day">{days[dayIndex]}</div>
       <div className="temperature">{temperature}°</div>
       <div className="weather-icon">
-        <ReactAnimatedWeather
-          icon={icon}
-          {...weatherIconProps}
-        />
+        <ReactAnimatedWeather icon={icon} {...weatherIconProps} />
       </div>
     </div>
   );
+};
 
-}
 export default WeatherInfo;

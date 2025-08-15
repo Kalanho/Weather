@@ -1,10 +1,10 @@
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
+// Определение типа для координат
+const position: [number, number] = [51.505, -0.09];
 
-const Map = () => {
-  const position = [51.505, -0.09];
-
+const Map: React.FC = () => {
   return (
     <MapContainer
       center={position}
