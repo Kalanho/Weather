@@ -5,6 +5,9 @@
   display: flex;
   flex-direction: row;
   grid-template-columns:100px 3fr 100px; 
+  width: 100%;
+  height: 90vh; 
+
 
 }
 .left-container{
