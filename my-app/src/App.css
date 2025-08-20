@@ -1,5 +1,29 @@
 .App {
   text-align: center;
+  color: white;
+  size: 190px;
+  display: flex;
+  flex-direction: row;
+  grid-template-columns:100px 3fr 100px; 
+  width: 100%;
+  height: 90vh; 
+
+
+}
+.left-container{
+  width: 60%;
+  display: flex;
+  flex-direction:column ;
+  justify-content: flex-end;
+}
+.right-container{
+  width: 50%;
+  display: flex;
+  flex-direction:column ;
+}
+.days{
+  display: flex;
+  align-items: center;
 }
 
 .App-logo {
