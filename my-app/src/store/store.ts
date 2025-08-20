@@ -5,10 +5,10 @@ class WeatherStore {
     country: string = "BELARUS";
     latitude: number = 51.5074;
     longitude: number = 0.1278;
-    feel: number = 5;
+    feel: number = 6;
     wind: number = 2;
     humidity: number = 87;
-    feeltemperature: number = 23;
+    feeltemperature: number = 19;
     day: number = 1;
     weatherConditionString: string = "Rain";
 

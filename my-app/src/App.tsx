@@ -5,7 +5,7 @@ import Location from './Components/Location/Location';
 import Coordinates from './Components/Coordinates/Coordinates';
 ///import Search from './Components/Search/Search';
 import WeatherCard from './Components/WeatherCard/WeatherCard';
-//import Map from './Components/Map/Map';
+import Map from './Components/Map/Map';
 import General_information from './Components/General_information/General_information';
 import store from './store/store';
 import { observer } from 'mobx-react-lite';
@@ -41,7 +41,7 @@ function App() {
       </div>
       <div className='right-container'>
         <Coordinates latitude={store.latitude} longitude={store.longitude} ></Coordinates >
-       
+       <Map></Map>
       </div>
     </div>
   );
