@@ -3,12 +3,13 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Location from './Components/Location/Location';
 import Coordinates from './Components/Coordinates/Coordinates';
-///import Search from './Components/Search/Search';
 import WeatherCard from './Components/WeatherCard/WeatherCard';
 import Map from './Components/Map/Map';
 import General_information from './Components/General_information/General_information';
+import SearchCityInput from './Components/SearchCityInput/SearchCityInput';
 import store from './store/store';
 import { observer } from 'mobx-react-lite';
+import TemperatureSettings from './Components/TemperatureSettings/TemperatureSettings';
 
 const weatherData = [
   { day: 1, weatherCondition: "Clear", temperature: 23 },
@@ -17,10 +18,14 @@ const weatherData = [
 ];
 
 function App() {
-
+  const handleCitySearch = (city: string) => {
+    store.setCity(city);
+  };
   return (
-    <div className="App">
+    <div className="App"> 
+     
       <div className='left-container'>
+      <TemperatureSettings></TemperatureSettings>
         <Location city={store.city} country={store.country} />
         <General_information feel={store.feel}
           wind={store.wind}
@@ -40,6 +45,7 @@ function App() {
         </div>
       </div>
       <div className='right-container'>
+      <SearchCityInput onSearch={handleCitySearch} />
         <Coordinates latitude={store.latitude} longitude={store.longitude} ></Coordinates >
        <Map></Map>
       </div>

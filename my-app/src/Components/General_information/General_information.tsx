@@ -16,6 +16,7 @@ const General_information: React.FC<GeneralInformationProps> = ({ day, temperatu
     color: 'white',
   };
   let icon: string;
+  let condition:string;
 
   switch (weatherCondition) {
     case 'Rain':
@@ -39,13 +40,36 @@ const General_information: React.FC<GeneralInformationProps> = ({ day, temperatu
     default:
       icon = 'CLEAR_DAY';
   }
+  switch (weatherCondition) {
+    case 'Rain':
+      condition="RAIN";
+      break;
+    case 'Clouds':
+      condition="CLOUDY";
+      break;
+    case 'Clear':
+      condition="CLEAR DAY";
+      break;
+    case 'Snow':
+      condition="  SNOW";
+      break;
+    case 'Thunderstorm':
+      condition="CLEAR DAY";
+      break;
+    case 'Fog':
+      condition="FOG";
+      break;
+    default:
+      condition="CLEAR DAY";
+  }
+
   return (
     <div className="weather-container">
       <div className="weather-temperature">
         <div >{temperature}°</div>
       </div>
       <div className="weather-details">
-        <div>OVERCAST</div>
+        <div>{condition}</div>
         <div >FEELS LIKE: {feel}°</div>
         <div >WIND: {wind} m/s</div>
         <div >HUMIDITY: {humidity}%</div>
