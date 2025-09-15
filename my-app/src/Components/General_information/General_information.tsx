@@ -1,6 +1,8 @@
 import React from 'react';
 import './General_information.css'; // Импортируйте CSS файл
 import ReactAnimatedWeather from 'react-animated-weather';
+import { observer } from 'mobx-react-lite';
+import store from '../../store/store';
 
 interface GeneralInformationProps {
   feel: number;
@@ -17,7 +19,9 @@ const General_information: React.FC<GeneralInformationProps> = ({ day, temperatu
   };
   let icon: string;
   let condition:string;
-
+  const transalations = store.getTranslations()
+  const language = store.language as 'en';
+  console.log("язык ", language) 
   switch (weatherCondition) {
     case 'Rain':
       icon = 'RAIN';
@@ -70,9 +74,9 @@ const General_information: React.FC<GeneralInformationProps> = ({ day, temperatu
       </div>
       <div className="weather-details">
         <div>{condition}</div>
-        <div >FEELS LIKE: {feel}°</div>
-        <div >WIND: {wind} m/s</div>
-        <div >HUMIDITY: {humidity}%</div>
+        <div >{transalations["Feels like"][language]} {feel}°</div>
+        <div >{transalations.Wind[language]} {wind} m/s</div>
+        <div >{transalations.Humidity[language]} {humidity}%</div>
       </div>
       <div className="weather-icons">
         <ReactAnimatedWeather icon={icon} {...weatherIconProps} />
@@ -81,4 +85,4 @@ const General_information: React.FC<GeneralInformationProps> = ({ day, temperatu
   );
 }
 
-export default General_information;
+export default observer  (General_information);

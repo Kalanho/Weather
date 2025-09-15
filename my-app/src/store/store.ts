@@ -1,6 +1,9 @@
 import { makeAutoObservable, action, observable } from 'mobx';
+import translations from './constants';
 
 class WeatherStore {
+    language = 'en';
+    temperatureScale: string = "°F";
     city: string = "Minsk";
     country: string = "BELARUS";
     latitude: number = 51.5074;
@@ -11,9 +14,21 @@ class WeatherStore {
     feeltemperature: number = 19;
     day: number = 1;
     weatherConditionString: string = "Rain";
+    fahrenheittemperature: number = 19;
 
+
+    weatherData: Array<{
+        day: number;
+        weatherCondition: string;
+        temperature: number;
+    }> = [];
     constructor() {
         makeAutoObservable(this, {
+            setInitialFeelTemperature: action,
+            fahrenheittemperature: observable,
+            language: observable,
+            temperatureScale: observable,
+            setScale: action,
             city: observable,
             setCity: action,
             country: observable,
@@ -35,11 +50,41 @@ class WeatherStore {
             weatherConditionString: observable,
             setWeatherConditionString: action
         });
+        this.weatherData = [
+            { day: 1, weatherCondition: "Clear", temperature: 23 },
+            { day: 2, weatherCondition: "Clouds", temperature: 20 },
+            { day: 3, weatherCondition: "Rain", temperature: 22 },
+        ];
+    }
+
+
+    fahrenheit(): number {
+        return this.temperatureScale === "°F" ?
+            this.fahrenheittemperature :
+            Math.round((this.fahrenheittemperature - 32) * 5 / 9);
+    }
+
+    setScale(temperatureScale: string) {
+        this.temperatureScale = temperatureScale;
+        this.feeltemperature = this.fahrenheit();
+    }
+
+    setInitialFeelTemperature(fahrenheittemperature: number) {
+        this.fahrenheittemperature = fahrenheittemperature;
+        this.feeltemperature = this.fahrenheit();
+    }
+    getTranslations() {
+        return translations;
+    }
+
+    setLanguage(language: string) {
+        this.language = language;
     }
 
     setCity(city: string) {
         this.city = city;
     }
+
 
     setCountry(country: string) {
         this.country = country;
@@ -81,3 +126,13 @@ class WeatherStore {
 const store = new WeatherStore();
 
 export default store;
+
+
+/// 1)При нажатии на кнопку (то есть на определенную кнопку в 
+// в коммпненте у тебя должен быть метод хендлер для он клик событие)
+
+/// 2) тебе нужно импортировать твой store в файл с компонентом
+
+// 3) сам store должен содержать метод для обновления состония внутри 
+// самого store
+

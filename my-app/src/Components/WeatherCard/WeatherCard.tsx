@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactAnimatedWeather from 'react-animated-weather';
 import './WeatherCard.css';
+import { observer } from 'mobx-react-lite';
+import store from '../../store/store';
 
 interface WeatherCardProps {
   day: number;
@@ -14,6 +16,9 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weatherCondition, temperature
     animate: true,
     color: 'white',
   };
+  const transalations = store.getTranslations()
+  const language = store.language as 'en';
+  console.log("язык ", language)
   const days: string[] = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
   const current = new Date();
   const dayIndex: number = current.getDay();
@@ -57,4 +62,4 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weatherCondition, temperature
   );
 };
 
-export default WeatherCard;
+export default  observer(WeatherCard);

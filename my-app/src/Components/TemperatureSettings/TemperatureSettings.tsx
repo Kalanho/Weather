@@ -1,17 +1,25 @@
 import React, { useState } from 'react';
+import store from '../../store/store';
 
 const TemperatureSettings: React.FC = () => {
-  const [language, setLanguage] = useState<'EN' | 'RU'>('EN');
+  const [language, setLanguage] = useState<'EN' | 'RU'|'ZH'>('EN');
   const [unit, setUnit] = useState<'°F' | '°C'>('°F');
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value as 'EN' | 'RU';
+    console.log("Язык который мы получаем при нажатии на кнопку: ", value);
+
+    store.setLanguage(value.toLowerCase());
     setLanguage(value);
   };
 
   const handleUnitChange = (selectedUnit: '°F' | '°C') => {
     setUnit(selectedUnit);
+    // нужно вызвать метод из store
+    store.setScale(selectedUnit);
+    // setScale()
   };
+
 
   return (
     <div
@@ -59,6 +67,7 @@ const TemperatureSettings: React.FC = () => {
       >
         <option value="EN">EN</option>
         <option value="RU">RU</option>
+        <option value="ZH">ZH</option>
       </select>
 
       {/* Переключатели градусов */}

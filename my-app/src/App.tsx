@@ -11,11 +11,7 @@ import store from './store/store';
 import { observer } from 'mobx-react-lite';
 import TemperatureSettings from './Components/TemperatureSettings/TemperatureSettings';
 
-const weatherData = [
-  { day: 1, weatherCondition: "Clear", temperature: 23 },
-  { day: 2, weatherCondition: "Clouds", temperature: 20 },
-  { day: 3, weatherCondition: "Rain", temperature: 22 },
-];
+
 
 function App() {
   const handleCitySearch = (city: string) => {
@@ -34,7 +30,7 @@ function App() {
           day={store.day}
           temperature={store.feeltemperature} />
         <div className='days'>
-          {weatherData.map((weather, index) => (
+          {store.weatherData.map((weather, index) => (
             <WeatherCard
               key={index}
               day={weather.day}

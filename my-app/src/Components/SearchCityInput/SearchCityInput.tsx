@@ -1,4 +1,8 @@
 import React, { useState, ChangeEvent } from 'react';
+import { observer } from 'mobx-react-lite';
+import store from '../../store/store';
+// импортировать store
+
 
 interface SearchCityInputProps {
   onSearch: (city: string) => void;
@@ -6,6 +10,12 @@ interface SearchCityInputProps {
 
 function SearchCityInput({ onSearch }: SearchCityInputProps) {
   const [city, setCity] = useState<string>('');
+  const transalations = store.getTranslations()
+const language = store.language as 'en';
+console.log("язык ", language)
+
+  // нужно получить значение языка из store
+  //нужно получить переводы которые соответвуют определенному языку
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCity(e.target.value);
@@ -46,7 +56,8 @@ function SearchCityInput({ onSearch }: SearchCityInputProps) {
       {/* Инпут */}
       <input
         type="text"
-        placeholder="Search city"
+        placeholder={transalations["Search city"][language]} 
+      
         value={city}
         onChange={handleChange}
         style={{
@@ -73,10 +84,13 @@ function SearchCityInput({ onSearch }: SearchCityInputProps) {
           cursor: 'pointer',
         }}
       >
-        SEARCH
+        {transalations.Search[language]} 
+    
       </button>
     </div>
   );
 }
 
-export default SearchCityInput;
+// компонент должен быть обернут в обсервер
+
+export default  observer (SearchCityInput);

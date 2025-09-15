@@ -1,7 +1,8 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
 import Clock from 'react-clock';
 import './Location.css'; // Импортируйте CSS файл
+import { observer } from 'mobx-react-lite';
+import store from '../../store/store';
 
 interface LocationProps {
   city: string;
@@ -9,7 +10,6 @@ interface LocationProps {
 } 
 function Location({ city, country }: LocationProps) {
   const [value, setValue] = useState(new Date());
-
   useEffect(() => {
     const interval = setInterval(() => setValue(new Date()), 1000);
 
@@ -32,6 +32,9 @@ function Location({ city, country }: LocationProps) {
     let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', ' August', 'September', 'October', 'November', 'December'];
     let day = current.getDay();
     let month = current.getMonth();
+    const transalations = store.getTranslations()
+    const language = store.language as 'en';
+    console.log("язык ", language) 
     return `${days[day]} ${current.getDate()} ${months[month]}`;
   }
   return (
@@ -45,4 +48,4 @@ function Location({ city, country }: LocationProps) {
   </div>);
 }
 
-export default Location;
+export default  observer( Location);
