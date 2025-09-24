@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Clock from 'react-clock';
 import './Location.css'; // Импортируйте CSS файл
 import { observer } from 'mobx-react-lite';
 import store from '../../store/store';
@@ -27,15 +26,18 @@ function Location({ city, country }: LocationProps) {
     return (number < 10 ? "0" : "") + number;
   }
   function Dateform():string {
-    const current = new Date();
     let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', ' August', 'September', 'October', 'November', 'December'];
-    let day = current.getDay();
-    let month = current.getMonth();
-    const transalations = store.getTranslations()
+    const translations = store.getTranslations();
     const language = store.language as 'en';
+    const current = new Date();
+    let day = current.getDate();
+    let month = current.getMonth();
+  const langData = translations[language];
+  const dayName = langData.days[current.getDay()];
+  const monthName = langData.months[month] ;
     console.log("язык ", language) 
-    return `${days[day]} ${current.getDate()} ${months[month]}`;
+    return `${dayName} ${day} ${monthName}`;
   }
   return (
     <div className="Location">

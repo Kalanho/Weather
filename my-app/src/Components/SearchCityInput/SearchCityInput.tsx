@@ -10,7 +10,7 @@ interface SearchCityInputProps {
 
 function SearchCityInput({ onSearch }: SearchCityInputProps) {
   const [city, setCity] = useState<string>('');
-  const transalations = store.getTranslations()
+  const translations = store.getTranslations()
 const language = store.language as 'en';
 console.log("язык ", language)
 
@@ -56,7 +56,7 @@ console.log("язык ", language)
       {/* Инпут */}
       <input
         type="text"
-        placeholder={transalations["Search city"][language]} 
+        placeholder={translations["Search city"][language]} 
       
         value={city}
         onChange={handleChange}
@@ -84,7 +84,7 @@ console.log("язык ", language)
           cursor: 'pointer',
         }}
       >
-        {transalations.Search[language]} 
+        {translations.Search[language]} 
     
       </button>
     </div>

@@ -66,11 +66,13 @@ class WeatherStore {
 
     setScale(temperatureScale: string) {
         this.temperatureScale = temperatureScale;
+        this.feel = this.fahrenheit();
         this.feeltemperature = this.fahrenheit();
     }
 
     setInitialFeelTemperature(fahrenheittemperature: number) {
         this.fahrenheittemperature = fahrenheittemperature;
+        this.feel = this.fahrenheit();
         this.feeltemperature = this.fahrenheit();
     }
     getTranslations() {

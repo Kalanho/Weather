@@ -11,14 +11,14 @@ interface CoordinatesProps {
 }
 const Coordinates: React.FC<CoordinatesProps> = ({ latitude, longitude }) => {
   // 
-const transalations = store.getTranslations()
+const translations = store.getTranslations()
 const language = store.language as 'en';
 console.log("язык ", language)
 
   return (
     <div className="coordinates">
-      <div>{transalations.Latitude[language]} {latitude}°</div>
-      <div>{transalations.Longitude[language]} {longitude}°</div>
+      <div>{translations.Latitude[language]} {latitude}°</div>
+      <div>{translations.Longitude[language]} {longitude}°</div>
     </div>
   );
 }

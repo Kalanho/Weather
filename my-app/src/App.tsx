@@ -35,7 +35,7 @@ function App() {
               key={index}
               day={weather.day}
               weatherCondition={weather.weatherCondition}
-              temperature={weather.temperature}
+              temperature={store.temperatureScale === "°F" ? weather.temperature : Math.round((weather.temperature - 32) * 5/9)}
             />
           ))}
         </div>

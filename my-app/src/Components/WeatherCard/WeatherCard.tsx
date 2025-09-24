@@ -18,11 +18,17 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weatherCondition, temperature
   };
   const transalations = store.getTranslations()
   const language = store.language as 'en';
-  console.log("язык ", language)
-  const days: string[] = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+  console.log("язык ", language) 
+
+  const fullday: string[] = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+  const translations = store.getTranslations();
   const current = new Date();
-  const dayIndex: number = current.getDay();
-  let icon: string;
+  let day = current.getDay();
+  const langData = translations[language];
+  console.log("язык ", language)
+  const nextDayIndex = (day + 1) % 7;
+  const dayName = langData.fullday[nextDayIndex];
+   let icon: string;
   switch (weatherCondition) {
     case 'Rain':
       icon = 'RAIN';
@@ -49,17 +55,17 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weatherCondition, temperature
 
 
     <div className="WeatherCard">
- 
-      <div className="day">{days[dayIndex+1]}</div>
-<div className="Card">
-     <div className="temperature">{temperature}°</div>
-      
-      <div className="weather">
-        <ReactAnimatedWeather icon={icon} {...weatherIconProps} />
-      </div></div>
+
+      <div className="day">{dayName}</div>
+      <div className="Card">
+        <div className="temperature">{temperature}°</div>
+
+        <div className="weather">
+          <ReactAnimatedWeather icon={icon} {...weatherIconProps} />
+        </div></div>
     </div>
 
   );
 };
 
-export default  observer(WeatherCard);
+export default observer(WeatherCard);

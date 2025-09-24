@@ -19,7 +19,7 @@ const General_information: React.FC<GeneralInformationProps> = ({ day, temperatu
   };
   let icon: string;
   let condition:string;
-  const transalations = store.getTranslations()
+  const translations = store.getTranslations()
   const language = store.language as 'en';
   console.log("язык ", language) 
   switch (weatherCondition) {
@@ -74,9 +74,9 @@ const General_information: React.FC<GeneralInformationProps> = ({ day, temperatu
       </div>
       <div className="weather-details">
         <div>{condition}</div>
-        <div >{transalations["Feels like"][language]} {feel}°</div>
-        <div >{transalations.Wind[language]} {wind} m/s</div>
-        <div >{transalations.Humidity[language]} {humidity}%</div>
+        <div >{translations["Feels like"][language]} {feel}°</div>
+        <div >{translations.Wind[language]} {wind} m/s</div>
+        <div >{translations.Humidity[language]} {humidity}%</div>
       </div>
       <div className="weather-icons">
         <ReactAnimatedWeather icon={icon} {...weatherIconProps} />
