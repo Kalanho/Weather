@@ -1,6 +1,10 @@
 import { makeAutoObservable, action, observable } from 'mobx';
 import translations from './constants';
 
+const TEMPERATURE = {
+    FAHRENHEIT_FREEZING_POINT: 32,
+    CELSIUS_FAHRENHEIT_RATIO: 5 / 9,
+} as const;
 class WeatherStore {
     language = 'en';
     temperatureScale: string = "°F";
@@ -15,6 +19,7 @@ class WeatherStore {
     day: number = 1;
     weatherConditionString: string = "Rain";
     fahrenheittemperature: number = 19;
+
 
 
     weatherData: Array<{
@@ -61,7 +66,7 @@ class WeatherStore {
     fahrenheit(): number {
         return this.temperatureScale === "°F" ?
             this.fahrenheittemperature :
-            Math.round((this.fahrenheittemperature - 32) * 5 / 9);
+            Math.round((this.fahrenheittemperature - TEMPERATURE.FAHRENHEIT_FREEZING_POINT) * TEMPERATURE.CELSIUS_FAHRENHEIT_RATIO);
     }
 
     setScale(temperatureScale: string) {
@@ -128,13 +133,3 @@ class WeatherStore {
 const store = new WeatherStore();
 
 export default store;
-
-
-/// 1)При нажатии на кнопку (то есть на определенную кнопку в 
-// в коммпненте у тебя должен быть метод хендлер для он клик событие)
-
-/// 2) тебе нужно импортировать твой store в файл с компонентом
-
-// 3) сам store должен содержать метод для обновления состония внутри 
-// самого store
-

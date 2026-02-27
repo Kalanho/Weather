@@ -2,7 +2,6 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import './Map.css';
 import 'leaflet/dist/leaflet.css';
-// Определение типа для координат
 const position: [number, number] = [51.505, -0.09];
 
 

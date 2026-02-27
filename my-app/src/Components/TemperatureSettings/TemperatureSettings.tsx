@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import store from '../../store/store';
 
 const TemperatureSettings: React.FC = () => {
-  const [language, setLanguage] = useState<'EN' | 'RU'|'ZH'>('EN');
+  const [language, setLanguage] = useState<'EN' | 'RU' | 'ZH'>('EN');
   const [unit, setUnit] = useState<'°F' | '°C'>('°F');
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -15,9 +15,7 @@ const TemperatureSettings: React.FC = () => {
 
   const handleUnitChange = (selectedUnit: '°F' | '°C') => {
     setUnit(selectedUnit);
-    // нужно вызвать метод из store
     store.setScale(selectedUnit);
-    // setScale()
   };
 
 
@@ -31,11 +29,11 @@ const TemperatureSettings: React.FC = () => {
         borderRadius: '8px',
         gap: '8px',
         fontFamily: 'Arial, sans-serif',
-        maxWidth: '600px', // Ограничение ширины
-        margin: '0 auto' // Центрирование
+        maxWidth: '600px',
+        margin: '0 auto'
       }}
     >
-      {/* Иконка (например, стрелка обновления) */}
+      { }
       <div
         style={{
           width: '36px',
@@ -48,11 +46,11 @@ const TemperatureSettings: React.FC = () => {
           cursor: 'pointer'
         }}
       >
-        {/* Можно вставить SVG или иконку, здесь пример простого текста */}
+        { }
         <span style={{ color: '#fff', fontSize: '16px' }}>↻</span>
       </div>
 
-      {/* Выпадающий список языка */}
+      { }
       <select
         value={language}
         onChange={handleLanguageChange}
@@ -70,7 +68,7 @@ const TemperatureSettings: React.FC = () => {
         <option value="ZH">ZH</option>
       </select>
 
-      {/* Переключатели градусов */}
+      { }
       <div style={{ display: 'flex', gap: '4px' }}>
         <button
           onClick={() => handleUnitChange('°F')}

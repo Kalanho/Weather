@@ -1,17 +1,15 @@
 body {
-  
- 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-   margin: 0; /* Убираем отступы тела */
-   height: 100vh; /* Высота вьюпорта */
-   background-image: url('/public/forest.jpg');
-   background-size: cover; /* Покрывает весь экран, сохраняя пропорции */
-   background-position: center; /* Центрирование изображения */
-   background-repeat: no-repeat; /* Не повторять изображение */
+  margin: 0;
+  height: 100vh;
+  background-image: url('/public/forest.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 code {

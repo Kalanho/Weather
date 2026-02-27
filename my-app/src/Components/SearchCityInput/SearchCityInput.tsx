@@ -1,30 +1,20 @@
 import React, { useState, ChangeEvent } from 'react';
 import { observer } from 'mobx-react-lite';
 import store from '../../store/store';
-// импортировать store
+import { ISearchCityInputProps } from './ISearchCityInputProps';
 
-
-interface SearchCityInputProps {
-  onSearch: (city: string) => void;
-}
-
-function SearchCityInput({ onSearch }: SearchCityInputProps) {
+function SearchCityInput({ onSearch }: ISearchCityInputProps) {
   const [city, setCity] = useState<string>('');
   const translations = store.getTranslations()
-const language = store.language as 'en';
-console.log("язык ", language)
-
-  // нужно получить значение языка из store
-  //нужно получить переводы которые соответвуют определенному языку
-
+  const language = store.language as 'en';
+  console.log("язык ", language)
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCity(e.target.value);
   };
 
   const handleSearch = () => {
-    onSearch(city); 
+    onSearch(city);
   };
-
   return (
     <div
       style={{
@@ -35,11 +25,11 @@ console.log("язык ", language)
         padding: '8px 12px',
         maxWidth: '600px',
         boxShadow: '0 2px 4px rgba(0,0,0,0.3)',
-       
-        margin: '0 auto' // Центрирование
+
+        margin: '0 auto'
       }}
     >
-      {/* Иконка микрофона */}
+      { }
       <div style={{ marginRight: '8px' }}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -53,11 +43,11 @@ console.log("язык ", language)
         </svg>
       </div>
 
-      {/* Инпут */}
+      { }
       <input
         type="text"
-        placeholder={translations["Search city"][language]} 
-      
+        placeholder={translations["Search city"][language]}
+
         value={city}
         onChange={handleChange}
         style={{
@@ -69,8 +59,7 @@ console.log("язык ", language)
           fontSize: '16px',
         }}
       />
-
-      {/* Кнопка SEARCH */}
+      { }
       <button
         onClick={handleSearch}
         style={{
@@ -84,13 +73,10 @@ console.log("язык ", language)
           cursor: 'pointer',
         }}
       >
-        {translations.Search[language]} 
-    
+        {translations.Search[language]}
+
       </button>
     </div>
   );
 }
-
-// компонент должен быть обернут в обсервер
-
-export default  observer (SearchCityInput);
+export default observer(SearchCityInput);

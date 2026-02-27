@@ -1,16 +1,12 @@
 import React from 'react';
-import './Temperature.css'; // Импортируйте CSS файл
-interface TemperatureProps {
-  temperatur: number;
-}
+import './Temperature.css';
+import { ITemperatureProps } from './ITemperatureProps';
 
-
-const Temperature: React.FC<TemperatureProps> = ({ temperatur }) => {
+const Temperature: React.FC<ITemperatureProps> = ({ temperatur }) => {
   return (
     <div className="temperatur">
       <div>{temperatur}°</div>
     </div>
   );
 }
-
 export default Temperature;
