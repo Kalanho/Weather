@@ -1,28 +1,54 @@
 import React from 'react';
-import logo from './logo.svg';
 import { useEffect, useState } from 'react';
 import './App.css';
-import Clock from 'react-clock';
 import Location from './Components/Location/Location';
 import Coordinates from './Components/Coordinates/Coordinates';
+import WeatherCard from './Components/WeatherCard/WeatherCard';
 import Map from './Components/Map/Map';
+import General_information from './Components/GeneralInformation/GeneralInformation';
+import SearchCityInput from './Components/SearchCityInput/SearchCityInput';
+import store from './store/store';
+import { observer } from 'mobx-react-lite';
+import TemperatureSettings from './Components/TemperatureSettings/TemperatureSettings';
+
 
 
 function App() {
-
+  const FAHRENHEIT_FREEZING_POINT = 32;
+  const CELSIUS_FAHRENHEIT_RATIO = 5 / 9;
+  const handleCitySearch = (city: string) => {
+    store.setCity(city);
+  };
   return (
     <div className="App">
-      <div>
-        <Location city={222} country={0.1278} ></Location >
 
-        <Map  ></Map >
+      <div className='left-container'>
+        <TemperatureSettings></TemperatureSettings>
+        <Location city={store.city} country={store.country} />
+        <General_information feel={store.feel}
+          wind={store.wind}
+          humidity={store.humidity}
+          weatherCondition={store.weatherConditionString}
+          day={store.day}
+          temperature={store.feeltemperature} />
+        <div className='days'>
+          {store.weatherData.map((weather, index) => (
+            <WeatherCard
+              key={index}
+              day={weather.day}
+              weatherCondition={weather.weatherCondition}
+              temperature={store.temperatureScale === "°F" ? weather.temperature : Math.round((weather.temperature - FAHRENHEIT_FREEZING_POINT) * CELSIUS_FAHRENHEIT_RATIO)}
+            />
+          ))}
+        </div>
       </div>
-      <div>
-        <Coordinates latitude={51.5074} longitude={0.1278} ></Coordinates >
+      <div className='right-container'>
+        <SearchCityInput onSearch={handleCitySearch} />
+        <Coordinates latitude={store.latitude} longitude={store.longitude} ></Coordinates >
+        <Map></Map>
       </div>
-
     </div>
   );
 }
 
-export default App;
+export default observer(App)
