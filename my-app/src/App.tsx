@@ -23,9 +23,12 @@ function App() {
     <div className="App">
 
       <div className='left-container'>
-        <TemperatureSettings></TemperatureSettings>
+        <div className='TemperatureSettings'>
+          <TemperatureSettings></TemperatureSettings>
+        </div>
         <Location city={store.city} country={store.country} />
-        <General_information feel={store.feel}
+        <General_information
+          feel={store.feel}
           wind={store.wind}
           humidity={store.humidity}
           weatherCondition={store.weatherConditionString}
@@ -43,8 +46,10 @@ function App() {
         </div>
       </div>
       <div className='right-container'>
-        <SearchCityInput onSearch={handleCitySearch} />
-        <Coordinates latitude={store.latitude} longitude={store.longitude} ></Coordinates >
+        <div className='top-row'>
+          <SearchCityInput onSearch={handleCitySearch} />
+          <Coordinates latitude={store.latitude} longitude={store.longitude} ></Coordinates >
+        </div>
         <Map></Map>
       </div>
     </div>

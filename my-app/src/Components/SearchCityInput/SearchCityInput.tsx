@@ -25,8 +25,6 @@ function SearchCityInput({ onSearch }: ISearchCityInputProps) {
         padding: '8px 12px',
         maxWidth: '600px',
         boxShadow: '0 2px 4px rgba(0,0,0,0.3)',
-
-        margin: '0 auto'
       }}
     >
       { }
