@@ -33,7 +33,7 @@ const TemperatureSettings: React.FC = () => {
         margin: '0 auto'
       }}
     >
-      { }
+   
       <div
         style={{
           width: '36px',
@@ -46,11 +46,11 @@ const TemperatureSettings: React.FC = () => {
           cursor: 'pointer'
         }}
       >
-        { }
+     
         <span style={{ color: '#fff', fontSize: '16px' }}>↻</span>
       </div>
 
-      { }
+   
       <select
         value={language}
         onChange={handleLanguageChange}
@@ -68,7 +68,7 @@ const TemperatureSettings: React.FC = () => {
         <option value="ZH">ZH</option>
       </select>
 
-      { }
+     
       <div style={{ display: 'flex', gap: '4px' }}>
         <button
           onClick={() => handleUnitChange('°F')}

@@ -7,9 +7,16 @@ const position: [number, number] = [51.505, -0.09];
 
 const Map: React.FC = () => {
   return (
-    <div >
-      <MapContainer center={position} zoom={13} scrollWheelZoom={false}
-        style={{ height: '400px', width: '85%' }}>
+    <div className='Map' >
+      <MapContainer center={position}
+        zoom={13}
+        scrollWheelZoom={false}
+        style={{
+          height: '400px',
+          width: '85%',
+          borderRadius: '30px',
+          overflow: 'hidden'
+        }}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
